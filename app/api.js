@@ -1,4 +1,4 @@
-export default function getData(parliament, term) {
+const getData = (parliament, term) => {
     const query = `
 SELECT ?partyLabel ?rgb ?party (COUNT(*) as ?count)
 WHERE
@@ -31,4 +31,29 @@ group by ?party ?partyLabel ?rgb
         .catch(function (err) {
             console.warn('Fetch Error :-S', err);
         });
+}
+
+const getNRW = () => {
+    const query = `
+SELECT ?period ?periodLabel ?number WHERE {
+  ?period wdt:P31 wd:Q15238777.
+  ?period p:P31 ?thing .
+  ?thing pq:P642 wd:Q571436.
+  ?thing pq:P1545 ?number .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "de,en" }
+}
+ORDER BY xsd:integer(?number)
+`;
+    const url = `https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=${encodeURIComponent(query)}`;
+    return window.fetch(url)
+        .then(response => response.json())
+        .then(data => data.results.bindings)
+        .catch((err) => {
+            console.warn('Fetch Error :-S', err);
+        });
+};
+
+export {
+    getData,
+    getNRW
 }
