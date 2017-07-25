@@ -57,7 +57,6 @@ const init = () => {
                         <h2> More Example for Nordrhein-Westfalen</h2>`)
 
         getNRW().then(results => {
-            console.log(results);
             const listItems = results.map(entry => {
                 const item = document.createElement('li');
                 const link = document.createElement('a');
@@ -82,7 +81,6 @@ const init = () => {
             acc[party.partyLabel.value] = { seats, colour}
             return acc;
         }, {});
-        console.log(parties)
         draw(parties)
         showList(data)
     });
