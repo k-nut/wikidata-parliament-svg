@@ -2074,12 +2074,12 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parliament-svg@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/parliament-svg/-/parliament-svg-1.0.1.tgz#b9dfe4fa54b6949ff756d498c6e278338840d539"
+parliament-svg@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/parliament-svg/-/parliament-svg-2.0.1.tgz#44c2fd2caefa3bbd86c57c69daa548fd0599d236"
   dependencies:
     round-precision "^1.0.0"
-    sainte-lague "^1.0.0"
+    sainte-lague "^2.0.0"
     virtual-hyperscript-svg "^2.0.0"
 
 parse-asn1@^5.0.0:
@@ -2472,9 +2472,9 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.1.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-sainte-lague@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/sainte-lague/-/sainte-lague-1.0.0.tgz#c3d6d18b49dbb5ee19f7c010ba2ff0807bd589da"
+sainte-lague@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sainte-lague/-/sainte-lague-2.0.0.tgz#6e3e362d04f949ecb1b0ba3b6380a2b3bb0f4150"
 
 select-hose@^2.0.0:
   version "2.0.0"
