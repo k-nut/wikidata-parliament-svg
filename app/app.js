@@ -1,13 +1,13 @@
 import parliamentSVG from 'parliament-svg'
-import toStr from 'virtual-dom-stringify'
+import createElement from "virtual-dom/create-element";
 import {getData, getNRW} from './api'
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 
 
 const draw = (parties) => {
     const svg = parliamentSVG(parties, true)
-    const svgstr = toStr(svg)
-    document.write(svgstr)
+    const domNode = createElement(svg)
+    document.body.appendChild(domNode)
 };
 
 const getValuesFromurl = () => {
