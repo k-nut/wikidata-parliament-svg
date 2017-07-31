@@ -1,8 +1,6 @@
 import parliamentSVG from 'parliament-svg'
 import createElement from "virtual-dom/create-element";
 import {getData, getNRW} from './api'
-import sortBy from "lodash/sortBy";
-
 
 const draw = (parties) => {
     const svg = parliamentSVG(parties, true)
@@ -32,7 +30,7 @@ function styledBubble(color){
 }
 
 function showList(parties) {
-    const listItems = sortBy(parties, p => - parseInt(p.count.value, 10))
+    const listItems = parties.sort((p1, p2)  =>  p2.count.value - p1.count.value)
         .map(party => {
         const item = document.createElement('li');
         item.appendChild(styledBubble(party.rgb.value));

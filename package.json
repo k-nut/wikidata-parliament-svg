@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "html-webpack-plugin": "^2.28.0",
-    "lodash": "^4.17.4",
     "parliament-svg": "^1.0.1",
     "virtual-dom": "^2.1.1",
     "webpack": "^3.0.0",
