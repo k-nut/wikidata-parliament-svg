@@ -25,7 +25,7 @@ function styledBubble(color){
     bubble.style.width = "10px";
     bubble.style.height = "10px";
     bubble.style.marginRight = "10px";
-    bubble.style.backgroundColor = color;
+    bubble.style.backgroundColor = '#' + color;
     bubble.style.display = "inline-block";
     bubble.style.borderRadius = "50%";
     return bubble;
