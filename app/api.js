@@ -1,17 +1,18 @@
 const getData = (parliament, term) => {
     const query = `
-SELECT ?partyLabel ?rgb ?party (COUNT(*) as ?count)
+SELECT ?partyLabel ?party ?rgb ?colorrgb (COUNT(*) as ?count)
 WHERE
 {
     ?item p:P39 ?statement .
     ?statement ps:P39 wd:${parliament} ; pq:P2937 wd:${term} .
     ?statement pq:P4100 ?party .
-    ?party wdt:P462 ?color .
-    ?color wdt:P465 ?rgb . 
-    
+    OPTIONAL {?party wdt:P462 ?color .
+        ?color wdt:P465 ?colorrgb .}
+    OPTIONAL {?party wdt:P465 ?rgb .}    
+
 	SERVICE wikibase:label { bd:serviceParam wikibase:language "de" }
 }
-group by ?party ?partyLabel ?rgb 
+group by ?party ?partyLabel ?rgb ?colorrgb
 #disable-caching-${Math.random()}
 `;
     const url = `https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=${encodeURIComponent(query)}`;

@@ -33,7 +33,16 @@ function showList(parties) {
     const listItems = parties.sort((p1, p2)  =>  p2.count.value - p1.count.value)
         .map(party => {
         const item = document.createElement('li');
-        item.appendChild(styledBubble(party.rgb.value));
+        var colour;
+        if (party.rgb)
+        {
+            colour = party.rgb.value;
+        }
+        else
+        {
+            colour = party.colorrgb.value;
+        }
+        item.appendChild(styledBubble(colour));
         item.appendChild(document.createTextNode(party.partyLabel.value));
         item.appendChild(document.createTextNode(" - "));
         item.appendChild(document.createTextNode(party.count.value));
@@ -42,6 +51,11 @@ function showList(parties) {
     const ul = document.createElement('ul');
     listItems.forEach((li) => ul.appendChild(li));
     document.body.appendChild(ul);
+}
+
+function isThereAColor(data)
+{
+    return data.rgb || data.colorrgb
 }
 
 const init = () => {
@@ -75,15 +89,23 @@ const init = () => {
 
         return;
     }
-    getData(values.parliament, values.term).then(data => {
-        const parties = data.reduce((acc, party) => {
+    getData(values.parliament, values.term, values.lang).then(data => {
+        const parties = data.filter(isThereAColor).reduce((acc, party) => {
             const seats = parseInt(party.count.value, 10)
-            const colour = `#${party.rgb.value}`;
+            var colour;
+            if (party.rgb)
+            {
+                colour = `#${party.rgb.value}`;
+            }
+            else
+            {
+                colour = `#${party.colorrgb.value}`;
+            }
             acc[party.partyLabel.value] = { seats, colour}
             return acc;
         }, {});
         draw(parties)
-        showList(data)
+        showList(data.filter(isThereAColor))
     });
 };
 
