@@ -3,10 +3,9 @@ const getData = (parliament, term) => {
 SELECT ?partyLabel ?rgb ?party (COUNT(*) as ?count)
 WHERE
 {
-	?item wdt:P39 wd:${parliament} .
-    ?item p:P39 ?membership . 
-    ?membership pq:P2937 wd:${term} .
-    ?item wdt:P102 ?party .
+    ?item p:P39 ?statement .
+    ?statement ps:P39 wd:${parliament} ; pq:P2937 wd:${term} .
+    ?statement pq:P4100 ?party .
     ?party wdt:P462 ?color .
     ?color wdt:P465 ?rgb . 
     
