@@ -14,6 +14,7 @@ const getValuesFromurl = () => {
     return {
         parliament: params.get("parliament"),
         term: params.get("term"),
+        lang: params.get("lang"),
     }
 };
 
@@ -55,7 +56,7 @@ const init = () => {
         const exampleBundestagUrl = `${window.location.origin}/?parliament=Q1939555&term=Q30579723`;
         const exampleBelgiumUrl = `${window.location.origin}/?parliament=Q15705021&term=Q17173094`;
 
-        document.write(`Please add the URL-Parameters <code>parliament</code> and <code>term</code> to the url.<br />
+        document.write(`Please add the URL-Parameters <code>parliament</code> and <code>term</code> to the url (an optional <code>lang</code> is also available)<br />
                         An example for the 19th Bundestag would be‸= ""
                         <code><a href="${exampleBundestagUrl}">${exampleBundestagUrl}</a></code>.<br/>
                         Another example for the 54th Chamber of Representatives of Belgium would be =
@@ -80,7 +81,7 @@ const init = () => {
 
         return;
     }
-    getData(values.parliament, values.term).then(data => {
+    getData(values.parliament, values.term, values.lang).then(data => {
         const validItems = data.filter(getColor);
         const parties = validItems.reduce((acc, party) => {
             const seats = parseInt(party.count.value, 10)
