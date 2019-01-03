@@ -3,10 +3,9 @@ const getData = (parliament, term) => {
 SELECT ?partyLabel ?rgb ?party (COUNT(*) as ?count)
 WHERE
 {
-	?item wdt:P39 wd:${parliament} .
-    ?item p:P39 ?membership . 
-    ?membership pq:P2937 wd:${term} .
-    ?item wdt:P102 ?party .
+    ?item p:P39 ?statement .
+    ?statement ps:P39 wd:${parliament} ; pq:P2937 wd:${term} .
+    ?statement pq:P4100 ?party .
     ?party wdt:P462 ?color .
     ?color wdt:P465 ?rgb . 
     
@@ -40,6 +39,7 @@ SELECT ?period ?periodLabel ?number WHERE {
   ?period p:P31 ?thing .
   ?thing pq:P642 wd:Q571436.
   ?thing pq:P1545 ?number .
+  FILTER(xsd:integer(?number) >= 14 && xsd:integer(?number) <= 15). # the others terms are filtered out as they are not complete enough
   SERVICE wikibase:label { bd:serviceParam wikibase:language "de,en" }
 }
 ORDER BY xsd:integer(?number)

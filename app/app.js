@@ -47,11 +47,14 @@ function showList(parties) {
 const init = () => {
     const values = getValuesFromurl();
     if (!values.parliament || !values.term ){
-        const exampleUrl = `${window.location.origin}/?parliament=Q1939555&term=Q15081430`;
+        const exampleBundestagUrl = `${window.location.origin}/?parliament=Q1939555&term=Q30579723`;
+        const exampleBelgiumUrl = `${window.location.origin}/?parliament=Q15705021&term=Q17173094`;
 
-        document.write(`Please add the URL-Parameters <code>parliament</code> and <code>term</code> to the url <br />
-                        an example for the current 18th Bundestag would be‸= ""
-                        <code><a href="${exampleUrl}">${exampleUrl}</a></code>.
+        document.write(`Please add the URL-Parameters <code>parliament</code> and <code>term</code> to the url.<br />
+                        An example for the 19th Bundestag would be‸= ""
+                        <code><a href="${exampleBundestagUrl}">${exampleBundestagUrl}</a></code>.<br/>
+                        Another example for the 54th Chamber of Representatives of Belgium would be =
+                        <code><a href="${exampleBelgiumUrl}">${exampleBelgiumUrl}</a></code>.<br/>
                         <h2> More Example for Nordrhein-Westfalen</h2>`)
 
         getNRW().then(results => {
