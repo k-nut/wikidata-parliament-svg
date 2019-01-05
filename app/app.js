@@ -80,7 +80,7 @@ const init = () => {
 
         return;
     }
-    getData(values.parliament, values.term, values.lang).then(data => {
+    getData(values.parliament, values.term).then(data => {
         const validItems = data.filter(getColor);
         const parties = validItems.reduce((acc, party) => {
             const seats = parseInt(party.count.value, 10)
