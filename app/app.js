@@ -33,7 +33,7 @@ function showList(parties) {
     const listItems = parties.sort((p1, p2)  =>  p2.count.value - p1.count.value)
         .map(party => {
         const item = document.createElement('li');
-        item.appendChild(styledBubble(party.rgb.value));
+        item.appendChild(styledBubble(getColor(party)));
         item.appendChild(document.createTextNode(party.partyLabel.value));
         item.appendChild(document.createTextNode(" - "));
         item.appendChild(document.createTextNode(party.count.value));
@@ -42,6 +42,11 @@ function showList(parties) {
     const ul = document.createElement('ul');
     listItems.forEach((li) => ul.appendChild(li));
     document.body.appendChild(ul);
+}
+
+function getColor(data){
+    if (data.rgb) return data.rgb.value;
+    if (data.colorrgb) return data.colorrgb.value
 }
 
 const init = () => {
@@ -76,14 +81,15 @@ const init = () => {
         return;
     }
     getData(values.parliament, values.term).then(data => {
-        const parties = data.reduce((acc, party) => {
+        const validItems = data.filter(getColor);
+        const parties = validItems.reduce((acc, party) => {
             const seats = parseInt(party.count.value, 10)
-            const colour = `#${party.rgb.value}`;
+            const colour = `#${getColor(party)}`;
             acc[party.partyLabel.value] = { seats, colour}
             return acc;
         }, {});
         draw(parties)
-        showList(data)
+        showList(validItems)
     });
 };
 
