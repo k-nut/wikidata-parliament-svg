@@ -1,4 +1,4 @@
-const getData = (parliament, term) => {
+const getData = (parliament, term, lang) => {
     const query = `
 SELECT ?partyLabel ?party ?rgb ?colorrgb (COUNT(*) as ?count)
 WHERE
@@ -10,7 +10,7 @@ WHERE
         ?color wdt:P465 ?colorrgb .}
     OPTIONAL {?party wdt:P465 ?rgb .}    
 
-	SERVICE wikibase:label { bd:serviceParam wikibase:language "de" }
+	SERVICE wikibase:label { bd:serviceParam wikibase:language "${lang},de" }
 }
 group by ?party ?partyLabel ?rgb ?colorrgb
 #disable-caching-${Math.random()}
