@@ -20,11 +20,10 @@ This is the [15th election Period](https://www.wikidata.org/wiki/Q30544772) of t
 ## Running
 ```bash
 yarn install
-npm start
+yarn start
 ```
 
 ## Buidling
 ```bash
-npm run build
-# creates a new folder /dist with bundled js and index
+yarn build
 ```

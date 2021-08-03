@@ -1,13 +1,13 @@
 {
   "dependencies": {
-    "html-webpack-plugin": "^2.30.1",
     "parliament-svg": "^2.0.1",
-    "virtual-dom": "^2.1.1",
-    "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "virtual-dom": "^2.1.1"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "esbuild app/app.js --bundle --watch --outfile=dist/bundle.js",
+    "build": "esbuild app/app.js --bundle --outfile=dist/bundle.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.12.17"
   }
 }
