@@ -8,6 +8,6 @@
     "build": "esbuild app/app.js --bundle --outfile=dist/bundle.js"
   },
   "devDependencies": {
-    "esbuild": "^0.12.17"
+    "esbuild": "^0.25.0"
   }
 }
